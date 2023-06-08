@@ -1,0 +1,227 @@
+<!--
+    DNT SOFTWARE 2023
+    Lite Cloud implementation
+    GENERATION = 1
+-->
+
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>FSS | Fast Save Storage</title>
+    <link rel='stylesheet' href='static/style.css'>
+    <link rel="icon" type="image/ico" href="static/favicon.ico"/>
+</head>
+
+<body onload="hidePR()">
+    <div class='preload' id='pr'>
+        <img src='static/logo.webp' class='pr-logo' alt="">
+    </div>
+    <div class='wrapper'>
+        <div class='left'>
+            <div class='left-logo' onclick = "navTo('upload')">
+                <h1 class='left-app-name'>FSS</h1>
+                <h4 class='left-app-desc'>Fast Save Storage</h4>
+            </div>
+            <div class='left-controls'>
+                <div class='control' onclick = "navTo('upload')">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class='cbg'>
+                        <g class='cbgg' fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+                            <path d="M12 12v9m0-9l-2.5 2m2.5-2l2.5 2M5.034 9.117A4.002 4.002 0 0 0 6 17h1" />
+                            <path d="M15.83 7.138a5.5 5.5 0 0 0-10.796 1.98S5.187 10 5.5 10.5" />
+                            <path d="M17 17a5 5 0 1 0-1.17-9.862L14.5 7.5" />
+                        </g>
+                    </svg>
+                    <h2 class='cc-text'>Загрузить файл</h2>
+                </div>
+                <div class='control' onclick = "navTo('download')">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class='cbg inc'>
+                        <g class='cbgg inc' fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+                            <path d="M12 22v-9m0 9l-2.5-2m2.5 2l2.5-2M5.034 9.117A4.002 4.002 0 0 0 6 17h1" />
+                            <path d="M15.83 7.138a5.5 5.5 0 0 0-10.796 1.98S5.187 10 5.5 10.5" />
+                            <path d="M17 17a5 5 0 1 0-1.17-9.862L14.5 7.5" />
+                        </g>
+                    </svg>
+                    <h2 class='cc-text inc'>Скачать файл</h2>
+                </div>
+                <div class='control' onclick = "navTo('all')">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class='cbg inc'>
+                        <g class='cbgg inc' fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+                            <rect width="7" height="7" x="3" y="3" rx="1" />
+                            <rect width="7" height="7" x="3" y="14" rx="1" />
+                            <rect width="7" height="7" x="14" y="3" rx="1" />
+                            <rect width="7" height="7" x="14" y="14" rx="1" />
+                        </g>
+                    </svg>
+                    <h2 class='cc-text inc'>Всё файлы</h2>
+                </div>
+            </div>
+            <h4 class='dev-info'>DNT SOFTWARE | 2023 | Vβ: |#APPVER| (|#APPVERDATE|)<br>VK: @tsmc0 / TG: @tsmc0</h4>
+        </div>
+        <div class='content'>
+            <div class='content-head'>
+                <h1 class='cht'>Загрузить файл</h1>
+                <div class='storage-info'>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class='upl'>
+                        <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class='uplg'>
+                            <path d="M5.034 11.117A4.002 4.002 0 0 0 6 19h11a5 5 0 1 0-1.17-9.862L14.5 9.5" />
+                            <path d="M15.83 9.138a5.5 5.5 0 0 0-10.796 1.98S5.187 12 5.5 12.5" />
+                        </g>
+                    </svg>
+                    <div class='st-text'>
+                        <h2 class='stn'>Хранилище данных</h2>
+                        <h2 class='sts'>Свободно |#FREE| из |#TOTAL|</h2>
+                    </div>
+                </div>
+            </div>
+            <div class='content-page'>
+                <label class='datas FIL' id='datas'>
+                    <div class='icon-up' id='cloud'>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24">
+                            <g class='up-svg' fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+                                <path d="M12 12v9m0-9l-2.5 2m2.5-2l2.5 2M5.034 9.117A4.002 4.002 0 0 0 6 17h1" />
+                                <path d="M15.83 7.138a5.5 5.5 0 0 0-10.796 1.98S5.187 10 5.5 10.5" />
+                                <path d="M17 17a5 5 0 1 0-1.17-9.862L14.5 7.5" />
+                            </g>
+                        </svg>
+                    </div>
+                    <input type='file' id='fs' hidden onchange='fileCount()' multiple></input>
+                </label>
+                <div class='upload-data' id='cloud-upload'>
+                    <div class='headu'>
+                        <div class='meta-info'>
+                            <div class='format'>
+                                <h2 class='formatLabel' id='fl'>Файл</h2>
+                            </div>
+                            <h2 class='fileName' id='fn'>-</h2>
+                        </div>
+                        <div class='status'>
+                            <h3 class='fileStatus' id='fis'>↑ Загружается</h3>
+                            <h3 class='fileInfo' id='fi'>0 Б</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class='succes FIL' id='end'>
+                    <img src='' alt='qr-error' id='qr'>
+                    <h1 class='sh'>Ваш файл успешно загружен 🎉</h1>
+                    <h3 class='sd' id='code'></h3>
+                    <a href='' id='link' target="_blank" class='a'></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+<script src='static/jquery-3.6.1.min.js'></script>
+<script src='static/jquery.form.min.js'></script>
+<script src='static/jquery.min.js'></script>
+<script>
+    document.getElementById('cloud-upload').style.display = 'none';
+    document.getElementById('end').style.display = 'none';
+
+    function hidePR() {
+        document.getElementById('pr').classList.add('fadeOut');
+        
+        document.getElementById('pr').addEventListener("animationend", function() {
+            document.getElementById('pr').style.display = 'none';
+        }, false);
+    }
+
+    function navTo(page){
+        window.location.href = page;
+    }
+
+    function fileCount() {
+        var inp = document.getElementById('fs');
+        var files = inp.files;
+
+        document.getElementById('fn').textContent = files[0].name;
+
+        document.getElementById('fi').textContent = convertBytes(files[0].size);
+        document.getElementById('cloud').classList.add('FILR');
+
+        document.getElementById('cloud').addEventListener("animationend", function() {
+            document.getElementById('datas').style.display = 'none';
+            document.getElementById('cloud-upload').style.display = 'flex';
+            document.getElementById('cloud-upload').classList.add('FILNP');
+            document.getElementById('fis').classList.add('pulsate');
+        }, false);
+
+        upload();
+    }
+
+    function convertBytes(bytes, decimals = 2) {
+        if (bytes === 0) {
+            return '0';
+        } else {
+            var k = 1024;
+            var dm = decimals < 0 ? 0 : decimals;
+            var sizes = ['байт', 'КБ', 'МБ', 'ГБ', 'ТБ'];
+            var i = Math.floor(Math.log(bytes) / Math.log(k));
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
+        }
+    }
+
+    function upload() {
+        /*setTimeout(() => {
+            document.getElementById('cloud-upload').classList.add('FILR');
+
+            document.getElementById('cloud-upload').addEventListener("animationend", function() {
+                document.getElementById('cloud-upload').style.display = 'none';
+                document.getElementById('end').style.display = 'flex';
+                document.getElementById('end').classList.add('FILNP');
+            }, false);
+        }, 2000);*/
+
+
+
+        var formData = new FormData();
+                formData.append('method', 'upload');  
+                //formData.append('file', document.getElementById('fs').files[0]);
+
+                $.each(document.getElementById('fs').files, function (key, input) {
+                    formData.append('file[]', input);
+                });
+
+        $.ajax({
+            type: 'POST',
+            url: 'api.php',
+            cache: false,
+            contentType: false,
+            processData: false,
+            data: formData,
+            success: function(data){
+                data = JSON.parse(data);
+                console.log(data);
+
+                if(data.code == 200){
+                    console.log(data.data);
+                    document.getElementById('fis').classList.remove('pulsate');
+                    document.getElementById('fis').classList.add('g');
+                    document.getElementById('fis').textContent = "✓ Файл загружен";
+
+                    document.getElementById('cloud-upload').classList.add('FILR');
+
+                    document.getElementById('cloud-upload').addEventListener("animationend", function () {
+                        document.getElementById('cloud-upload').style.display = 'none';
+                    }, false);
+
+                    document.getElementById('end').style.display = 'flex';
+                    document.getElementById('end').classList.add('FILNP');
+
+                    document.getElementById('qr').src = data.data.qr;
+                    document.getElementById('code').innerHTML = "Сохраните QR-код, при переходе по которому начнётся загрузка вашего файла или сохраните ссылку и идентификатор файла: <b>" + data.data.code + "</b>";
+                    
+                    document.getElementById('link').href = data.data.url;
+                    document.getElementById('link').textContent = data.data.url;
+                } else {
+                    document.getElementById('fis').classList.add('r');
+                    document.getElementById('fis').textContent = "× Файл не загружен";
+                }
+            }
+        });
+    }
+</script>

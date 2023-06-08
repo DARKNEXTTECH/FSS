@@ -1,0 +1,74 @@
+<!DOCTYPE HTML>
+<head>
+    <title>Fast Save Storage > Мастер установки и восстановления</title>
+</head>
+<style>
+    @font-face{
+        font-family: 'Inter';
+        src: url('static/Inter-Regular.ttf');
+    }
+    
+    body{
+        padding-left:25px;
+        font-family: 'Inter';
+    }
+</style>
+<body>
+    <h1 style = 'margin-block-end:0;'>|#TYPE| Fast Save Storage</h1>
+    <h3 style = 'margin-block-start:0;'>|#DESC|</h3>
+    <hr>
+    |#CONTENT|
+    <hr>
+    <h4>Дополнительные действия</h4>
+    <div style = 'display:flex;flex-direction:column;'>
+        <a href = '#'>Полная переустановка (Удаление всех пользовательских данных)</a>
+        <a href = '#'>Восстановление конфигурации (В случае утери или повреждения)</a>
+    </div>
+    <hr>
+    <h4>DARK NEXT TECH SOFTWARE (www.darknext.net) <br>2023 / Файловое хранилище / Флаги продукта: NO TECH. SUPPORT; / Тип сборки: RELEASE; Собран: 28.04.2023<br>Пакет: [dnts.beta.fss.2023]</h4>
+</body>
+<script src='static/jquery-3.6.1.min.js'></script>
+<script src='static/jquery.form.min.js'></script>
+<script src='static/jquery.min.js'></script>
+<script>
+    const inputHandler = function(e) {
+        s = e.target.value;
+        
+        document.getElementById('vidx').textContent = Number((s / 1024).toFixed(2)) + ' GB';
+
+    }
+    
+    document.getElementById('freeMem').addEventListener('input', inputHandler);
+    
+    function count(){
+        mb = Number(document.getElementById('freeMem').value);
+        
+        
+        
+    }
+
+    function startInstall(){
+        var formData = new FormData();
+                formData.append('method', 'install');
+                formData.append('freeMEM', document.getElementById('freeMem').value); 
+                formData.append('code', document.getElementById('code').value); 
+
+        $.ajax({
+            type: 'POST',
+            url: 'api.php',
+            cache: false,
+            contentType: false,
+            processData: false,
+            data: formData,
+            success: function(data){
+                data = JSON.parse(data);
+                
+                if(data.code == 200){
+                    window.location.href = 'upload';
+                } else {
+                    alert(data.data);
+                }
+            }
+        });
+    }
+</script>

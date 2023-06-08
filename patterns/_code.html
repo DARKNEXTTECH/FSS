@@ -1,0 +1,141 @@
+<!--
+    DNT SOFTWARE 2023
+    Lite Cloud implementation
+    GENERATION = 1
+-->
+
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>FSS — Скачать файл</title>
+    <link rel='stylesheet' href='static/style.css'>
+    <link rel="icon" type="image/ico" href="static/favicon.ico"/>
+</head>
+
+<body onload="hidePR()">
+    <div class='preload' id='pr'>
+        <img src='static/logo.webp' class='pr-logo' alt="">
+    </div>
+    <div class='wrapper'>
+        <div class='left'>
+            <div class='left-logo' onclick = "navTo('upload')">
+                <h1 class='left-app-name'>FSS</h1>
+                <h4 class='left-app-desc'>Fast Save Storage</h4>
+            </div>
+            <div class='left-controls'>
+                <div class='control' onclick = "navTo('upload')">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class='cbg inc'>
+                        <g class='cbgg inc' fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+                            <path d="M12 12v9m0-9l-2.5 2m2.5-2l2.5 2M5.034 9.117A4.002 4.002 0 0 0 6 17h1" />
+                            <path d="M15.83 7.138a5.5 5.5 0 0 0-10.796 1.98S5.187 10 5.5 10.5" />
+                            <path d="M17 17a5 5 0 1 0-1.17-9.862L14.5 7.5" />
+                        </g>
+                    </svg>
+                    <h2 class='cc-text inc'>Загрузить файл</h2>
+                </div>
+                <div class='control' onclick = "navTo('download')">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class='cbg inc'>
+                        <g class='cbgg inc' fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+                            <path d="M12 22v-9m0 9l-2.5-2m2.5 2l2.5-2M5.034 9.117A4.002 4.002 0 0 0 6 17h1" />
+                            <path d="M15.83 7.138a5.5 5.5 0 0 0-10.796 1.98S5.187 10 5.5 10.5" />
+                            <path d="M17 17a5 5 0 1 0-1.17-9.862L14.5 7.5" />
+                        </g>
+                    </svg>
+                    <h2 class='cc-text inc'>Скачать файл</h2>
+                </div>
+                <div class='control' onclick = "navTo('all')">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class='cbg inc'>
+                        <g class='cbgg inc' fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+                            <rect width="7" height="7" x="3" y="3" rx="1" />
+                            <rect width="7" height="7" x="3" y="14" rx="1" />
+                            <rect width="7" height="7" x="14" y="3" rx="1" />
+                            <rect width="7" height="7" x="14" y="14" rx="1" />
+                        </g>
+                    </svg>
+                    <h2 class='cc-text inc'>Всё файлы</h2>
+                </div>
+            </div>
+            <h4 class='dev-info'>DNT SOFTWARE | 2023 | Vβ: |#APPVER| (|#APPVERDATE|)<br>VK: @tsmc0 / TG: @tsmc0</h4>
+        </div>
+        <div class='content'>
+            <div class='content-head'>
+                <h1 class='cht'>Все файлы</h1>
+                <div class='storage-info'>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class='upl'>
+                        <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class='uplg'>
+                            <path d="M5.034 11.117A4.002 4.002 0 0 0 6 19h11a5 5 0 1 0-1.17-9.862L14.5 9.5" />
+                            <path d="M15.83 9.138a5.5 5.5 0 0 0-10.796 1.98S5.187 12 5.5 12.5" />
+                        </g>
+                    </svg>
+                    <div class='st-text'>
+                        <h2 class='stn'>Хранилище данных</h2>
+                        <h2 class='sts'>Свободно |#FREE| из |#TOTAL|</h2>
+                    </div>
+                </div>
+            </div>
+            <div class='content-page'>
+                <div class = 'dwn-wrap FIL'>
+                    <h2 class = 'dwwn'>Введите код для доступа к файловой системе</h2>
+                    <input type = 'password' id = 'code' placeholder = "Введите 4-х значный код" class = 'edit'>
+                    <div class = 'btn-acc' onclick = 'get()' id = 'getbt'>
+                        <h3 class = 'btn-text' id = 'getbtt'>Продолжить</h3>
+                    </div>
+                </div> 
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+<script src='static/jquery-3.6.1.min.js'></script>
+<script src='static/jquery.form.min.js'></script>
+<script src='static/jquery.min.js'></script>
+<script>
+    function hidePR() {
+        document.getElementById('pr').classList.add('fadeOut');
+        
+        document.getElementById('pr').addEventListener("animationend", function() {
+            document.getElementById('pr').style.display = 'none';
+        }, false);
+    }
+
+    function navTo(page){
+        window.location.href = page;
+    }
+
+    function get() {
+        var formData = new FormData();
+                formData.append('method', 'check-code');  
+                formData.append('code', document.getElementById('code').value);
+
+        $.ajax({
+            type: 'POST',
+            url: 'api.php',
+            cache: false,
+            contentType: false,
+            processData: false,
+            data: formData,
+            success: function(data){
+                data = JSON.parse(data);
+                
+                if(data.code == 200){
+                    navTo('all');
+                } else {
+                    document.getElementById('code').classList.add('err');
+                    document.getElementById('getbtt').textContent = 'Неправильный пароль';
+                    document.getElementById('getbt').classList.add('locked');
+        
+                    setTimeout(() => {
+                        document.getElementById('code').classList.remove('err');
+                        document.getElementById('getbt').classList.remove('locked');
+                        document.getElementById('getbtt').textContent = 'Продолжить';
+                    }, 2000);
+                }
+                
+            }
+        });
+    }
+</script>
