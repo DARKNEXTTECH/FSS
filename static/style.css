@@ -332,7 +332,7 @@ html{
 
 .sclx::-webkit-scrollbar{
   background-color: transparent; 
-  width: 5px;
+  width: 0px;
 }
 
 .sclx::-webkit-scrollbar-thumb{
@@ -393,11 +393,11 @@ html{
 .all-wrap{
   display: flex;
   flex-wrap: wrap;
-  height: 100%;
   width: 100%;
   align-items: flex-start;
   align-content:flex-start;
   justify-content: space-between;
+  padding-bottom: 80px;
 }
 
 .dir-data{
@@ -1168,6 +1168,10 @@ b{
     .methods{
         justify-content:center;
         align-items:center;
+    }
+
+    .all-wrap{
+        justify-content: center !important;
     }
 }
 
